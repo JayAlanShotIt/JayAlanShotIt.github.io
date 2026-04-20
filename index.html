@@ -810,7 +810,7 @@
       img.loading = 'lazy';
       img.addEventListener('load', () => img.classList.add('loaded'));
       img.addEventListener('error', () => { item.style.display = 'none'; });
-      img.src = 'https://drive.google.com/uc?export=view&id=' + photo.id;
+      img.src = 'https://drive.google.com/thumbnail?id=' + photo.id + '&sz=w1000';
 
       const overlay = document.createElement('div');
       overlay.className = 'photo-overlay';
@@ -874,7 +874,7 @@
   function showLbImage() {
     lbImg.style.opacity = '0';
     const p = visiblePhotos[lbIdx];
-    lbImg.src = 'https://drive.google.com/uc?export=view&id=' + p.id;
+    lbImg.src = 'https://drive.google.com/thumbnail?id=' + p.id + '&sz=w1600';
     lbImg.onload = () => { lbImg.style.opacity = '1'; };
     lbCount.textContent = (lbIdx + 1) + ' / ' + visiblePhotos.length;
   }
