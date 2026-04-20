@@ -634,88 +634,79 @@
 </div>
 
 <script>
-  // ── PATHS ──
-  const PHOTO_BASE = '/Users/jayalan/Library/Mobile Documents/com~apple~CloudDocs/Jessie "Jay Alan" Webster work/Photography/';
-  const VIDEO_BASE = '/Users/jayalan/Library/Mobile Documents/com~apple~CloudDocs/Jessie "Jay Alan" Webster work/Filmmaking/';
-
-  function fileUrl(base, file) {
-    const segments = (base + file).split('/');
-    return 'file://' + segments.map(s => encodeURIComponent(s)).join('/');
-  }
-
   // ── PHOTOS ──
   const PHOTOS = [
     // Studio
-    { f: 'Studio Photography/Nicole 1.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 2.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 3.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 4.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 5.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 6.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 7.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 8.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 9.jpg',      cat: 'studio' },
-    { f: 'Studio Photography/Nicole 10.jpg',     cat: 'studio' },
-    { f: 'Studio Photography/Queen Acee 1.jpeg', cat: 'studio' },
-    { f: 'Studio Photography/Queen Ace 2.png',   cat: 'studio' },
-    { f: 'Studio Photography/Queen Ace 3.jpg',   cat: 'studio' },
-    { f: 'Studio Photography/Queen Ace 4.jpg',   cat: 'studio' },
-    { f: 'Studio Photography/Queen Ace  5.jpg',  cat: 'studio' },
-    { f: 'Studio Photography/KB 1.jpg',          cat: 'studio' },
-    { f: 'Studio Photography/KB 2.jpg',          cat: 'studio' },
-    { f: 'Studio Photography/KB 3.jpg',          cat: 'studio' },
-    { f: 'Studio Photography/KB 4.jpeg',         cat: 'studio' },
-    { f: 'Studio Photography/KB 5.jpg',          cat: 'studio' },
-    { f: 'Studio Photography/KB 6.jpg',          cat: 'studio' },
-    { f: 'Studio Photography/Headshot 1.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Headshot 2.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Headshot 3.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Headshot 4.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Jay Alan 1.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Jay Alan 2.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Jay Alan 3.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Jay Alan 4.jpg',    cat: 'studio' },
-    { f: 'Studio Photography/Fee 1.jpeg',        cat: 'studio' },
-    { f: 'Studio Photography/Fee 2.jpg',         cat: 'studio' },
-    { f: 'Studio Photography/Fee 3.jpg',         cat: 'studio' },
-    { f: 'Studio Photography/Rae 1.png',         cat: 'studio' },
-    { f: 'Studio Photography/Rae 2.jpeg',        cat: 'studio' },
-    { f: 'Studio Photography/Rae 3.png',         cat: 'studio' },
-    { f: 'Studio Photography/Rae 4.jpg',         cat: 'studio' },
-    { f: 'Studio Photography/Rae 5.jpeg',        cat: 'studio' },
-    { f: 'Studio Photography/Kali.jpg',          cat: 'studio' },
-    { f: 'Studio Photography/Red.jpg',           cat: 'studio' },
-    { f: 'Studio Photography/Bean 1.jpg',        cat: 'studio' },
-    { f: 'Studio Photography/Bean 2.jpg',        cat: 'studio' },
-    { f: 'Studio Photography/Bean 3.jpg',        cat: 'studio' },
-    { f: 'Studio Photography/Cookie.jpg',        cat: 'studio' },
-    { f: 'Studio Photography/Jahneal.jpg',       cat: 'studio' },
-    { f: 'Studio Photography/Queen.jpg',         cat: 'studio' },
+    { id: '1FOAV2CQWM_ZKI9axny57RVrmIvmUzzF_', cat: 'studio' },
+    { id: '10Cj58loOhXJMs29N_Q8gZuApvGtgr4wE', cat: 'studio' },
+    { id: '1gEgDm7CuwcupBO8dWlgMn5RoA8Rwm130', cat: 'studio' },
+    { id: '1OvYV5Xh28ljQZnlPaaxMnMJEMC6_wOT_', cat: 'studio' },
+    { id: '1JazSMocLz2jVSXbasqeNMA4PToEjhycV', cat: 'studio' },
+    { id: '1Hq5zuYpErRZX4SMhzqbc2U68ugqdIG5E', cat: 'studio' },
+    { id: '1v0YqY07targVc2p4KPGJ_w3k5mzno_NI', cat: 'studio' },
+    { id: '1C1IaZSAaidfjlknC05SQyU5lCdSHFIsW', cat: 'studio' },
+    { id: '16XnpNfVr8BKQeaAnnMs9pTeu48GJG4Mw', cat: 'studio' },
+    { id: '1Im5djH0pULflf3VPx_TebEXHJTrHXzKe', cat: 'studio' },
+    { id: '1XW9kpTdrLeRBuF9bhqOOo68dxGULQTJG', cat: 'studio' },
+    { id: '1UMjceDkcmXBRVqSoWP0WXX1LHN7hRpa8', cat: 'studio' },
+    { id: '10XOroi9rXMMWMgddTu4hk4a4KCrrkadX', cat: 'studio' },
+    { id: '1gw6htjnpXoQUDG-O-dRaxbJXQ3nGBxD8', cat: 'studio' },
+    { id: '1MoC84bWQsjm5NowQsWP8LJV1hoSbCyXZ', cat: 'studio' },
+    { id: '1QleRlqrHgUKNcuYpXYCUYbtCwiF3-cvn', cat: 'studio' },
+    { id: '1eMbcyvcsLOSwK6fCfDbkQUJB1ZCIVJ8V', cat: 'studio' },
+    { id: '1Gg12xTuYYL4zmpZLgnmnLAIx6zaIVdy5', cat: 'studio' },
+    { id: '1tZScGD8fg3QCHSRL5BMqZQjnUcMatvw9', cat: 'studio' },
+    { id: '1xiUiheItIKaUewkAWM3e8qTC7HEfmONq', cat: 'studio' },
+    { id: '1YH0K3JptCQ5A-lR7CMxYEbJa5RoGaQ-7', cat: 'studio' },
+    { id: '1aGAtxwqrz-_X1oMGYvw-9ycWHOkysCo3', cat: 'studio' },
+    { id: '188h7q7M5qx0nN80r-ljBHwpqnyNvsTdI', cat: 'studio' },
+    { id: '1bo7Jath523nGWe6TRyf2nTkAWAjIjXo1', cat: 'studio' },
+    { id: '1EU0VIZYVESg_J3CBLRvA0Wv0s275Rp-t', cat: 'studio' },
+    { id: '1cqF3XUS-Is6OWFjUmOk_WCD5K5T9D09Y', cat: 'studio' },
+    { id: '1hdYl8CESJ3GnV_u8YKMzY7L69x71ykUl', cat: 'studio' },
+    { id: '1AKTMVYkykU2OJxR0snVcyWrOZO10spXt', cat: 'studio' },
+    { id: '1BKPbupRZ0VLQ1svE3FM5L_um_1oXxAUl', cat: 'studio' },
+    { id: '1S5jm-0d4RvKlp19Sncc-8xo6M6OD75pN', cat: 'studio' },
+    { id: '1C9HED-vfSNf2e93wt34HJW2orzhfSZAw', cat: 'studio' },
+    { id: '1GMyJnU_57u0Q8nCg4Zk7iAdRjkdy05Sb', cat: 'studio' },
+    { id: '11wVjn6Awpcdt4ZZJFmfjAmqn6bf2RYBJ', cat: 'studio' },
+    { id: '1TnVmawViQCmRyW0-cPChk6fyDgOE1ch5', cat: 'studio' },
+    { id: '1AgdSE3aKQ_eZzbH440FWZ9Y92o4ZHhda', cat: 'studio' },
+    { id: '1JQ4AZ46ZRJEJm68f1tfVCDUviuBLqFXc', cat: 'studio' },
+    { id: '19tQ02OVicjPAMhEtBgQtULj_DQ7dVnF4', cat: 'studio' },
+    { id: '1bzKYdowI3sTtAkZ6OUSIZbMEawO1KYNz', cat: 'studio' },
+    { id: '1NQdWY-azBfPJFUHAyGxoZyyhD77B6xMJ', cat: 'studio' },
+    { id: '1sB5mYT-GqjCbyK4YJ8bgY1isv5-5hPSk', cat: 'studio' },
+    { id: '1d-E2ApXAeab1-VIxFaDhXD3OZrIO1zEd', cat: 'studio' },
+    { id: '1N8EPbfRGw2IPI1poWP3losdT8kprbxzf', cat: 'studio' },
+    { id: '1twLDWqBnaD1NNqEwnjmaCLG6YT518ZLt', cat: 'studio' },
+    { id: '13jcvceRsHo90bAfhCYEhemRWANgQln4m', cat: 'studio' },
+    { id: '1WQmWs6OtmQ5CfX1a7Bqs1SgDHz5n3PiE', cat: 'studio' },
     // Candid
-    { f: 'Candid:Natural Lighting/Humming Bird.jpg',          cat: 'candid' },
-    { f: 'Candid:Natural Lighting/PR.jpg',                    cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9017.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9028.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9056.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9075.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9082.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9103.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9111.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9114.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9237.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9265.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9398.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9411.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9432.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9432-2.jpg',            cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9440.jpg',              cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9611-Enhanced-NR.jpg',  cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9614-Enhanced-NR.jpg',  cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9635-Enhanced-NR.jpg',  cat: 'candid' },
-    { f: 'Candid:Natural Lighting/IMG_9655.jpg',              cat: 'candid' },
+    { id: '1Omx7nvrPI29rVZ-dghKDaVQWhS9Fagke', cat: 'candid' },
+    { id: '1qZ92ombYurOjoB_l1gURpeqjH27SeD8V', cat: 'candid' },
+    { id: '1ayiozKL-XKqQPKhLaU5W_89MzXylp9r1', cat: 'candid' },
+    { id: '1E8Jn5EJ1EXwbKP-vK7qkpngxMRSuh2DX', cat: 'candid' },
+    { id: '1SnxWl3W8ExntwMjOiwGkSOKIPJ7OYIOZ', cat: 'candid' },
+    { id: '1RsG2SrSBOnEfNbPVG37ubCrG2kZ5Slza', cat: 'candid' },
+    { id: '1n3dn7Tq5iBCiP4eBtr4ZNCRBV9S5OgeC', cat: 'candid' },
+    { id: '1HW9Imtam-axwo-_8BmHC_UikvdYDafhm', cat: 'candid' },
+    { id: '1_Sus90uU14vktRSZlndvt3Xa2Tr7-89N', cat: 'candid' },
+    { id: '1c3hQAAyabO3EZYptGSY__vrosRlfaZ4v', cat: 'candid' },
+    { id: '1GBDa4UdF2ULB4YRAkejl1FMswma0tVNb', cat: 'candid' },
+    { id: '1YLQkJvGzYMHgs-YuIUX_wa2o59PTcBun', cat: 'candid' },
+    { id: '1vatxifErJICdcbcdTzbPrU0GKrtpX3px', cat: 'candid' },
+    { id: '1DdMyC0FCD6Ljga-IzIqaohErsNanHor4', cat: 'candid' },
+    { id: '1UOatWxrTY-rr-FNSonpThS2xXFsgyCG8', cat: 'candid' },
+    { id: '1Pk0pxqyRrA68jkzpaMuoR_eupz2FBrJ3', cat: 'candid' },
+    { id: '1gGo-tFAtTwtIe9k10dOwMEjlxBtwwZzG', cat: 'candid' },
+    { id: '14_fekRDoKC8u6y0T6L7btcyjQ5Y4qruT', cat: 'candid' },
+    { id: '1QJgho9X8zw-x4fM-NPjZLcz0WmZF9X8s', cat: 'candid' },
+    { id: '1c8kPnZLAUHf_4i-CcO8F07xgaeJ5pMvD', cat: 'candid' },
+    { id: '1r3fxJb0YYw0aXF5qNJMKuIkWU1STDEfB', cat: 'candid' },
   ];
 
-  // ── FILMS ──
+    // ── FILMS ──
   const FILMS = [
     {
       title: "Director's Reel",
@@ -819,7 +810,7 @@
       img.loading = 'lazy';
       img.addEventListener('load', () => img.classList.add('loaded'));
       img.addEventListener('error', () => { item.style.display = 'none'; });
-      img.src = fileUrl(PHOTO_BASE, photo.f);
+      img.src = 'https://drive.google.com/uc?export=view&id=' + photo.id;
 
       const overlay = document.createElement('div');
       overlay.className = 'photo-overlay';
@@ -883,7 +874,7 @@
   function showLbImage() {
     lbImg.style.opacity = '0';
     const p = visiblePhotos[lbIdx];
-    lbImg.src = fileUrl(PHOTO_BASE, p.f);
+    lbImg.src = 'https://drive.google.com/uc?export=view&id=' + p.id;
     lbImg.onload = () => { lbImg.style.opacity = '1'; };
     lbCount.textContent = (lbIdx + 1) + ' / ' + visiblePhotos.length;
   }
@@ -904,22 +895,11 @@
     document.getElementById('vmodal-title').textContent = film.title;
     vwrap.innerHTML = '';
 
-    if (film.type === 'local') {
-      const v = document.createElement('video');
-      v.src = fileUrl('', film.src.replace('file://', '').replace(/^\/+/, '/'));
-      // For local files just use the raw path approach
-      const segments = film.src.split('/');
-      v.src = 'file://' + segments.map(s => encodeURIComponent(s)).join('/');
-      v.controls = true;
-      v.autoplay = true;
-      vwrap.appendChild(v);
-    } else {
-      const ifr = document.createElement('iframe');
-      ifr.src = film.src;
-      ifr.allow = 'autoplay; fullscreen';
-      ifr.allowFullscreen = true;
-      vwrap.appendChild(ifr);
-    }
+    const ifr = document.createElement('iframe');
+    ifr.src = film.src;
+    ifr.allow = 'autoplay; fullscreen';
+    ifr.allowFullscreen = true;
+    vwrap.appendChild(ifr);
 
     vm.classList.add('open');
     document.body.style.overflow = 'hidden';
