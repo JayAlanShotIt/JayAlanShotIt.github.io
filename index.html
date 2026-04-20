@@ -266,7 +266,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #181818 0%, #0a0a0a 100%);
+      background: linear-gradient(to top, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.28) 55%, transparent 100%);
+      z-index: 1;
     }
     .film-thumb-label {
       position: absolute;
@@ -274,6 +275,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2;
     }
     .film-thumb-label span {
       font-family: 'Playfair Display', serif;
@@ -284,7 +286,7 @@
     }
     .play-ring {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       width: 54px; height: 54px;
       border: 1px solid rgba(201,169,110,0.45);
       border-radius: 50%;
@@ -580,20 +582,20 @@
     <div>
       <div class="about-body">
         <p>Based in Atlanta, GA, Jay Alan is a filmmaker and photographer whose visual language is built on intimacy, practical light, and narrative tension. Every frame is a deliberate compositional choice — whether it's a studio portrait or a wide establishing shot in an open field.</p>
-        <p>His work spans music videos, short films, and long-form series. Credits include directing the short film <em>Hood Baby</em> (2024), the music video <em>About Her</em> for Bambii, and the ongoing Afro-fantasy epic <em>Worship</em>. His cinematographic approach favors low-key practical lighting, deep shadows, and the stillness that holds meaning.</p>
+        <p>His work spans music videos, short films, and long-form series. Credits include directing the short film <em>Baby Girl</em> (2024), the music video <em>About Her</em> for Bambii, and the ongoing Afro-fantasy epic <em>Worship</em>. His cinematographic approach favors low-key practical lighting, deep shadows, and the stillness that holds meaning.</p>
         <p>Available for commercial, narrative, and editorial work.</p>
       </div>
       <div class="stats-row">
         <div>
-          <div class="stat-val">7+</div>
+          <div class="stat-val">10+</div>
           <div class="stat-lbl">Years Shooting</div>
         </div>
         <div>
-          <div class="stat-val">MV</div>
-          <div class="stat-lbl">Music Videos</div>
+          <div class="stat-val">▶</div>
+          <div class="stat-lbl">Videography</div>
         </div>
         <div>
-          <div class="stat-val">ATL</div>
+          <div class="stat-val">ATL/DMV</div>
           <div class="stat-lbl">Based</div>
         </div>
       </div>
@@ -709,25 +711,20 @@
     // ── FILMS ──
   const FILMS = [
     {
-      title: "Director's Reel",
-      sub: "Jessie Webster's Reel",
-      cat: 'Reel',
-      type: 'iframe',
-      src: 'https://www.youtube.com/embed/bgxQmoR_eEE?autoplay=1',
-    },
-    {
-      title: 'Worship',
-      sub: 'AI Series · Episode 1',
+      title: 'Worship — Episode 1',
+      sub: 'AI Series',
       cat: 'Series',
       type: 'iframe',
       src: 'https://www.youtube.com/embed/lVKThU-euJA?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/lVKThU-euJA/hqdefault.jpg',
     },
     {
-      title: 'Worship',
-      sub: 'AI Series · Episode 2',
+      title: 'Worship — Episode 2',
+      sub: 'AI Series',
       cat: 'Series',
       type: 'iframe',
       src: 'https://www.youtube.com/embed/QgdzcAn_Byw?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/QgdzcAn_Byw/hqdefault.jpg',
     },
     {
       title: 'The App Route',
@@ -735,27 +732,37 @@
       cat: 'Documentary',
       type: 'iframe',
       src: 'https://www.youtube.com/embed/JwzLv7FwISg?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/JwzLv7FwISg/hqdefault.jpg',
     },
     {
-      title: 'Hood Baby',
+      title: 'Baby Girl',
       sub: 'Short Film · Award-Winning Best First-time Director',
       cat: 'Short Film',
       type: 'iframe',
       src: 'https://player.vimeo.com/video/965540323?autoplay=1&color=c9a96e',
     },
     {
-      title: 'Short Film',
-      sub: 'Award-Winning Best First-time Director',
-      cat: 'Short Film',
+      title: "Director's Reel",
+      sub: 'Selected Work',
+      cat: 'Reel',
       type: 'iframe',
       src: 'https://player.vimeo.com/video/1041140073?autoplay=1&color=c9a96e',
     },
     {
-      title: 'Atlantic Station',
-      sub: 'Short Film · 2022',
+      title: 'Pole Position',
+      sub: 'Short Film',
+      cat: 'Short Film',
+      type: 'iframe',
+      src: 'https://www.youtube.com/embed/bgxQmoR_eEE?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/bgxQmoR_eEE/hqdefault.jpg',
+    },
+    {
+      title: 'Recidivist',
+      sub: 'Short Film',
       cat: 'Short Film',
       type: 'iframe',
       src: 'https://www.youtube.com/embed/AUftUAasfk4?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/AUftUAasfk4/hqdefault.jpg',
     },
     {
       title: 'About Her',
@@ -763,31 +770,41 @@
       cat: 'Music Video',
       type: 'iframe',
       src: 'https://www.youtube.com/embed/rvNCaCF19bA?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/rvNCaCF19bA/hqdefault.jpg',
     },
     {
-      title: 'Head Start',
-      sub: 'Bri.Broskie — Music Video',
+      title: 'Reap What You Sow',
+      sub: 'Gnice Da Owner — Music Video',
       cat: 'Music Video',
       type: 'iframe',
-      src: 'https://www.youtube.com/embed/XitcVscZ9Oc?autoplay=1',
+      src: 'https://www.youtube.com/embed/Xg2zuiNMj5s?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/Xg2zuiNMj5s/hqdefault.jpg',
     },
     {
-      title: 'Videography Reel',
-      sub: 'Selected Work',
+      title: 'Atlanta West Side',
+      sub: 'Videography',
+      cat: 'Videography',
+      type: 'iframe',
+      src: 'https://www.youtube.com/embed/XitcVscZ9Oc?autoplay=1',
+      thumb: 'https://img.youtube.com/vi/XitcVscZ9Oc/hqdefault.jpg',
+    },
+    {
+      title: 'The Hacker',
+      sub: 'Videography',
       cat: 'Videography',
       type: 'iframe',
       src: 'https://player.vimeo.com/video/941046208?autoplay=1&color=c9a96e',
     },
     {
-      title: 'Nucala',
-      sub: 'Commercial · Medical Animation',
+      title: 'Pharmaceutical Ad',
+      sub: 'Commercial',
       cat: 'Commercial',
       type: 'iframe',
       src: 'https://player.vimeo.com/video/1090581314?autoplay=1&color=c9a96e',
     },
     {
-      title: '3D WE-Construction',
-      sub: 'Commercial',
+      title: 'Pharmaceutical Ad',
+      sub: 'Commercial · Cut 2',
       cat: 'Commercial',
       type: 'iframe',
       src: 'https://player.vimeo.com/video/1041398150?autoplay=1&color=c9a96e',
@@ -840,20 +857,22 @@
   FILMS.forEach(film => {
     const card = document.createElement('div');
     card.className = 'film-card';
-    card.innerHTML = `
-      <div class="film-thumb">
-        <div class="film-thumb-label"><span>${film.title}</span></div>
-        <div class="play-ring">
-          <svg width="18" height="18" viewBox="0 0 18 18">
-            <path d="M6 4.5l8 4.5-8 4.5V4.5z" fill="#c9a96e"/>
-          </svg>
-        </div>
-      </div>
-      <div class="film-info">
-        <div class="film-cat">${film.cat}</div>
-        <div class="film-name">${film.title}</div>
-        <div class="film-sub">${film.sub}</div>
-      </div>`;
+    const thumbStyle = film.thumb ? ' style="background-image:url(' + film.thumb + ');background-size:cover;background-position:center;"' : '';
+    const labelHtml = film.thumb ? '' : '<div class="film-thumb-label"><span>' + film.title + '</span></div>';
+    card.innerHTML =
+      '<div class="film-thumb"' + thumbStyle + '>' +
+        labelHtml +
+        '<div class="play-ring">' +
+          '<svg width="18" height="18" viewBox="0 0 18 18">' +
+            '<path d="M6 4.5l8 4.5-8 4.5V4.5z" fill="#c9a96e"/>' +
+          '</svg>' +
+        '</div>' +
+      '</div>' +
+      '<div class="film-info">' +
+        '<div class="film-cat">' + film.cat + '</div>' +
+        '<div class="film-name">' + film.title + '</div>' +
+        '<div class="film-sub">' + film.sub + '</div>' +
+      '</div>';
     card.addEventListener('click', () => openVideoModal(film));
     filmGrid.appendChild(card);
   });
