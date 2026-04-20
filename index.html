@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jay Alan — Filmmaker & Photographer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #080808;
+      --surface: #101010;
+      --text: #f0ede8;
+      --muted: #666;
+      --muted-hover: #999;
+      --gold: #c9a96e;
+      --gold-light: #dfc090;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.5s, border-color 0.5s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom-color: var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 5.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(5rem, 12vw, 10.5rem);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      margin-top: 2.25rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2.2;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--muted);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 56px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.25; }
+      50% { opacity: 1; }
+    }
+
+    /* ── SECTION SHELL ── */
+    .section {
+      padding: 6rem 3rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .section-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3.75rem);
+      font-weight: 400;
+    }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── GALLERY CONTROLS ── */
+    .gallery-controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.45rem 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      border-radius: 1px;
+    }
+    .filter-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #080808;
+      font-weight: 500;
+    }
+
+    /* ── PHOTO GRID ── */
+    .photo-grid {
+      columns: 3;
+      column-gap: 6px;
+    }
+    @media (max-width: 900px) { .photo-grid { columns: 2; } }
+    @media (max-width: 560px) { .photo-grid { columns: 1; } }
+
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111;
+    }
+    .photo-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+      opacity: 0;
+    }
+    .photo-item img.loaded { opacity: 1; }
+    .photo-item:hover img { transform: scale(1.05); }
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0.45);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-item:hover .photo-overlay { opacity: 1; }
+    .expand-ring {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(240,237,232,0.6);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── FILM GRID ── */
+    .film-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .film-card {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--surface);
+      transition: background 0.3s;
+    }
+    .film-card:hover { background: #161616; }
+    .film-thumb {
+      aspect-ratio: 16/9;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .film-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #181818 0%, #0a0a0a 100%);
+    }
+    .film-thumb-label {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .film-thumb-label span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(240,237,232,0.12);
+      letter-spacing: 0.04em;
+    }
+    .play-ring {
+      position: relative;
+      z-index: 1;
+      width: 54px; height: 54px;
+      border: 1px solid rgba(201,169,110,0.45);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .film-card:hover .play-ring {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .play-ring svg { transition: all 0.3s; }
+    .film-card:hover .play-ring svg path { fill: #080808; }
+    .film-info {
+      padding: 1.1rem 1.4rem 1.4rem;
+    }
+    .film-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .film-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+    .film-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 5rem;
+      max-width: 1000px;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .about-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+    .about-body {
+      font-size: 0.95rem;
+      line-height: 1.95;
+      color: rgba(240,237,232,0.7);
+    }
+    .about-body p + p { margin-top: 1.1rem; }
+    .about-body em { color: var(--text); font-style: italic; }
+    .stats-row {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    /* ── DIVIDER ── */
+    .hr { height: 1px; background: var(--border); margin: 0 3rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(0,0,0,0.97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+    #lightbox.open { opacity: 1; pointer-events: all; }
+    #lb-img {
+      max-width: 88vw;
+      max-height: 86vh;
+      object-fit: contain;
+      user-select: none;
+      transition: opacity 0.2s;
+    }
+    .lb-btn {
+      position: absolute;
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.3s;
+      line-height: 1;
+    }
+    .lb-btn:hover { color: var(--text); }
+    #lb-close { top: 1.75rem; right: 2.5rem; font-size: 1.3rem; }
+    .lb-nav {
+      top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border: 1px solid var(--border) !important;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+      font-size: 1rem;
+    }
+    .lb-nav:hover { border-color: rgba(255,255,255,0.2) !important; }
+    #lb-prev { left: 2rem; }
+    #lb-next { right: 2rem; }
+    #lb-count {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%; transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    /* ── VIDEO MODAL ── */
+    #vmodal {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(0,0,0,0.97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+    #vmodal.open { opacity: 1; pointer-events: all; }
+    .vmodal-inner {
+      width: 100%;
+      max-width: 1080px;
+    }
+    .vmodal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0.9rem;
+    }
+    .vmodal-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .vmodal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    #vmodal-close {
+      background: none; border: none;
+      color: var(--muted); font-size: 1.3rem;
+      cursor: pointer; transition: color 0.3s;
+      line-height: 1; padding: 0.25rem;
+    }
+    #vmodal-close:hover { color: var(--text); }
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+    .video-wrap iframe,
+    .video-wrap video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="nav-logo">Jay Alan</a>
+  <ul class="nav-links">
+    <li><a href="#photography">Photography</a></li>
+    <li><a href="#film">Film</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:jay.alan.shot.it@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <p class="hero-eyebrow">Atlanta, GA</p>
+  <h1 class="hero-title">Jay<br><em>Alan</em></h1>
+  <p class="hero-sub">Filmmaker &nbsp;&nbsp;·&nbsp;&nbsp; Photographer<br>Visual storytelling through light &amp; motion</p>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="section" id="photography">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Photography</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="gallery-controls">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="studio">Studio</button>
+    <button class="filter-btn" data-filter="candid">Candid</button>
+  </div>
+  <div class="photo-grid" id="photoGrid"></div>
+</section>
+
+<div class="hr"></div>
+
+<!-- FILM -->
+<section class="section" id="film">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Film</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="film-grid" id="filmGrid"></div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p class="about-label">The Filmmaker</p>
+      <h3 class="about-name">Jessie<br>"Jay Alan"<br>Webster</h3>
+    </div>
+    <div>
+      <div class="about-body">
+        <p>Based in Atlanta, GA, Jay Alan is a filmmaker and photographer whose visual language is built on intimacy, practical light, and narrative tension. Every frame is a deliberate compositional choice — whether it's a studio portrait or a wide establishing shot in an open field.</p>
+        <p>His work spans music videos, short films, and long-form series. Credits include directing the short film <em>Hood Baby</em> (2024), the music video <em>About Her</em> for Bambii, and the ongoing Afro-fantasy epic <em>Worship</em>. His cinematographic approach favors low-key practical lighting, deep shadows, and the stillness that holds meaning.</p>
+        <p>Available for commercial, narrative, and editorial work.</p>
+      </div>
+      <div class="stats-row">
+        <div>
+          <div class="stat-val">7+</div>
+          <div class="stat-lbl">Years Shooting</div>
+        </div>
+        <div>
+          <div class="stat-val">MV</div>
+          <div class="stat-lbl">Music Videos</div>
+        </div>
+        <div>
+          <div class="stat-val">ATL</div>
+          <div class="stat-lbl">Based</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">© 2026 Jay Alan</div>
+  <div class="footer-links">
+    <a href="mailto:jay.alan.shot.it@gmail.com">jay.alan.shot.it@gmail.com</a>
+    <a href="tel:4436940977">443.694.0977</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button class="lb-btn" id="lb-close">✕</button>
+  <button class="lb-btn lb-nav" id="lb-prev">&#8592;</button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lb-btn lb-nav" id="lb-next">&#8594;</button>
+  <span id="lb-count"></span>
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="vmodal">
+  <div class="vmodal-inner">
+    <div class="vmodal-header">
+      <div>
+        <div class="vmodal-cat" id="vmodal-cat"></div>
+        <div class="vmodal-title" id="vmodal-title"></div>
+      </div>
+      <button id="vmodal-close">✕</button>
+    </div>
+    <div class="video-wrap" id="vwrap"></div>
+  </div>
+</div>
+
+<script>
+  // ── PATHS ──
+  const PHOTO_BASE = '/Users/jayalan/Library/Mobile Documents/com~apple~CloudDocs/Jessie "Jay Alan" Webster work/Photography/';
+  const VIDEO_BASE = '/Users/jayalan/Library/Mobile Documents/com~apple~CloudDocs/Jessie "Jay Alan" Webster work/Filmmaking/';
+
+  function fileUrl(base, file) {
+    const segments = (base + file).split('/');
+    return 'file://' + segments.map(s => encodeURIComponent(s)).join('/');
+  }
+
+  // ── PHOTOS ──
+  const PHOTOS = [
+    // Studio
+    { f: 'Studio Photography/Nicole 1.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 2.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 3.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 4.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 5.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 6.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 7.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 8.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 9.jpg',      cat: 'studio' },
+    { f: 'Studio Photography/Nicole 10.jpg',     cat: 'studio' },
+    { f: 'Studio Photography/Queen Acee 1.jpeg', cat: 'studio' },
+    { f: 'Studio Photography/Queen Ace 2.png',   cat: 'studio' },
+    { f: 'Studio Photography/Queen Ace 3.jpg',   cat: 'studio' },
+    { f: 'Studio Photography/Queen Ace 4.jpg',   cat: 'studio' },
+    { f: 'Studio Photography/Queen Ace  5.jpg',  cat: 'studio' },
+    { f: 'Studio Photography/KB 1.jpg',          cat: 'studio' },
+    { f: 'Studio Photography/KB 2.jpg',          cat: 'studio' },
+    { f: 'Studio Photography/KB 3.jpg',          cat: 'studio' },
+    { f: 'Studio Photography/KB 4.jpeg',         cat: 'studio' },
+    { f: 'Studio Photography/KB 5.jpg',          cat: 'studio' },
+    { f: 'Studio Photography/KB 6.jpg',          cat: 'studio' },
+    { f: 'Studio Photography/Headshot 1.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Headshot 2.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Headshot 3.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Headshot 4.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Jay Alan 1.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Jay Alan 2.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Jay Alan 3.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Jay Alan 4.jpg',    cat: 'studio' },
+    { f: 'Studio Photography/Fee 1.jpeg',        cat: 'studio' },
+    { f: 'Studio Photography/Fee 2.jpg',         cat: 'studio' },
+    { f: 'Studio Photography/Fee 3.jpg',         cat: 'studio' },
+    { f: 'Studio Photography/Rae 1.png',         cat: 'studio' },
+    { f: 'Studio Photography/Rae 2.jpeg',        cat: 'studio' },
+    { f: 'Studio Photography/Rae 3.png',         cat: 'studio' },
+    { f: 'Studio Photography/Rae 4.jpg',         cat: 'studio' },
+    { f: 'Studio Photography/Rae 5.jpeg',        cat: 'studio' },
+    { f: 'Studio Photography/Kali.jpg',          cat: 'studio' },
+    { f: 'Studio Photography/Red.jpg',           cat: 'studio' },
+    { f: 'Studio Photography/Bean 1.jpg',        cat: 'studio' },
+    { f: 'Studio Photography/Bean 2.jpg',        cat: 'studio' },
+    { f: 'Studio Photography/Bean 3.jpg',        cat: 'studio' },
+    { f: 'Studio Photography/Cookie.jpg',        cat: 'studio' },
+    { f: 'Studio Photography/Jahneal.jpg',       cat: 'studio' },
+    { f: 'Studio Photography/Queen.jpg',         cat: 'studio' },
+    // Candid
+    { f: 'Candid:Natural Lighting/Humming Bird.jpg',          cat: 'candid' },
+    { f: 'Candid:Natural Lighting/PR.jpg',                    cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9017.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9028.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9056.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9075.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9082.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9103.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9111.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9114.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9237.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9265.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9398.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9411.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9432.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9432-2.jpg',            cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9440.jpg',              cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9611-Enhanced-NR.jpg',  cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9614-Enhanced-NR.jpg',  cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9635-Enhanced-NR.jpg',  cat: 'candid' },
+    { f: 'Candid:Natural Lighting/IMG_9655.jpg',              cat: 'candid' },
+  ];
+
+  // ── FILMS ──
+  const FILMS = [
+    {
+      title: 'Jay Alan Reel',
+      sub: '2021 Director\'s Reel',
+      cat: 'Reel',
+      type: 'local',
+      src: VIDEO_BASE + 'My Jay Alan Reel 2021.mp4',
+    },
+    {
+      title: 'About Her',
+      sub: 'Bambii — Music Video · 2021',
+      cat: 'Music Video',
+      type: 'drive',
+      src: 'https://drive.google.com/file/d/1kSa1_3wPb2qBdHQ882t-vyByZbIrLBXT/preview',
+    },
+    {
+      title: 'Head Start',
+      sub: 'Bri.Broskie — Music Video · 2021',
+      cat: 'Music Video',
+      type: 'drive',
+      src: 'https://drive.google.com/file/d/1Mw_PzqWEqmDMhHUskx8PMcImVos2WqhH/preview',
+    },
+    {
+      title: 'Atlantic Station',
+      sub: 'Short Film · 2022',
+      cat: 'Short Film',
+      type: 'drive',
+      src: 'https://drive.google.com/file/d/19OAHwHXTJ9nQMyJx-lgE3eYOvsS7LoLC/preview',
+    },
+    {
+      title: 'Hood Baby',
+      sub: 'Short Film · 2024',
+      cat: 'Short Film',
+      type: 'iframe',
+      src: 'https://player.vimeo.com/video/879211921?autoplay=1&color=c9a96e',
+    },
+    {
+      title: 'Worship',
+      sub: 'Episode 1 — Series · 2026',
+      cat: 'Series',
+      type: 'drive',
+      src: 'https://drive.google.com/file/d/1HLjvvv1UkoVfMgbk62Fkt9c2huY0SNsZ/preview',
+    },
+    {
+      title: 'Mexico',
+      sub: 'Short Documentary',
+      cat: 'Documentary',
+      type: 'local',
+      src: VIDEO_BASE + 'My Mexico short.mp4',
+    },
+    {
+      title: 'At the End of the Day',
+      sub: 'Sitcom Pilot',
+      cat: 'Series',
+      type: 'local',
+      src: VIDEO_BASE + 'My Sitcom Pilot - At The End Of The Day shortened.mp4',
+    },
+    {
+      title: 'Relationships',
+      sub: 'Series Scene',
+      cat: 'Series',
+      type: 'local',
+      src: VIDEO_BASE + 'Scene I filme for series Relattonships.mp4',
+    },
+  ];
+
+  // ── RENDER PHOTOS ──
+  const grid = document.getElementById('photoGrid');
+  let visiblePhotos = PHOTOS;
+
+  function buildPhotoGrid(list) {
+    visiblePhotos = list;
+    grid.innerHTML = '';
+    list.forEach((photo, i) => {
+      const item = document.createElement('div');
+      item.className = 'photo-item';
+
+      const img = document.createElement('img');
+      img.alt = '';
+      img.loading = 'lazy';
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      img.addEventListener('error', () => { item.style.display = 'none'; });
+      img.src = fileUrl(PHOTO_BASE, photo.f);
+
+      const overlay = document.createElement('div');
+      overlay.className = 'photo-overlay';
+      overlay.innerHTML = '<div class="expand-ring"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1h4M1 1v4M11 11H7M11 11V7" stroke="#f0ede8" stroke-width="1.4" stroke-linecap="round"/></svg></div>';
+
+      item.appendChild(img);
+      item.appendChild(overlay);
+      item.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(item);
+    });
+  }
+
+  // ── FILTER ──
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      buildPhotoGrid(f === 'all' ? PHOTOS : PHOTOS.filter(p => p.cat === f));
+    });
+  });
+
+  buildPhotoGrid(PHOTOS);
+
+  // ── RENDER FILMS ──
+  const filmGrid = document.getElementById('filmGrid');
+  FILMS.forEach(film => {
+    const card = document.createElement('div');
+    card.className = 'film-card';
+    card.innerHTML = `
+      <div class="film-thumb">
+        <div class="film-thumb-label"><span>${film.title}</span></div>
+        <div class="play-ring">
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path d="M6 4.5l8 4.5-8 4.5V4.5z" fill="#c9a96e"/>
+          </svg>
+        </div>
+      </div>
+      <div class="film-info">
+        <div class="film-cat">${film.cat}</div>
+        <div class="film-name">${film.title}</div>
+        <div class="film-sub">${film.sub}</div>
+      </div>`;
+    card.addEventListener('click', () => openVideoModal(film));
+    filmGrid.appendChild(card);
+  });
+
+  // ── LIGHTBOX ──
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbCount = document.getElementById('lb-count');
+  let lbIdx = 0;
+
+  function openLightbox(i) {
+    lbIdx = i;
+    showLbImage();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLbImage() {
+    lbImg.style.opacity = '0';
+    const p = visiblePhotos[lbIdx];
+    lbImg.src = fileUrl(PHOTO_BASE, p.f);
+    lbImg.onload = () => { lbImg.style.opacity = '1'; };
+    lbCount.textContent = (lbIdx + 1) + ' / ' + visiblePhotos.length;
+  }
+
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', () => { lbIdx = (lbIdx - 1 + visiblePhotos.length) % visiblePhotos.length; showLbImage(); });
+  document.getElementById('lb-next').addEventListener('click', () => { lbIdx = (lbIdx + 1) % visiblePhotos.length; showLbImage(); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+  // ── VIDEO MODAL ──
+  const vm    = document.getElementById('vmodal');
+  const vwrap = document.getElementById('vwrap');
+
+  function openVideoModal(film) {
+    document.getElementById('vmodal-cat').textContent   = film.cat;
+    document.getElementById('vmodal-title').textContent = film.title;
+    vwrap.innerHTML = '';
+
+    if (film.type === 'local') {
+      const v = document.createElement('video');
+      v.src = fileUrl('', film.src.replace('file://', '').replace(/^\/+/, '/'));
+      // For local files just use the raw path approach
+      const segments = film.src.split('/');
+      v.src = 'file://' + segments.map(s => encodeURIComponent(s)).join('/');
+      v.controls = true;
+      v.autoplay = true;
+      vwrap.appendChild(v);
+    } else {
+      const ifr = document.createElement('iframe');
+      ifr.src = film.src;
+      ifr.allow = 'autoplay; fullscreen';
+      ifr.allowFullscreen = true;
+      vwrap.appendChild(ifr);
+    }
+
+    vm.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    vm.classList.remove('open');
+    vwrap.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('vmodal-close').addEventListener('click', closeVideoModal);
+  vm.addEventListener('click', e => { if (e.target === vm) closeVideoModal(); });
+
+  // ── KEYBOARD ──
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeVideoModal(); }
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + visiblePhotos.length) % visiblePhotos.length; showLbImage(); }
+    if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % visiblePhotos.length; showLbImage(); }
+  });
+
+  // ── NAV SCROLL ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  }, { passive: true });
+</script>
+</body>
+</html>
